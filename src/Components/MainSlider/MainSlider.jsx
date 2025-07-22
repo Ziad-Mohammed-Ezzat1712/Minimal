@@ -1,8 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import slider1 from "../../assets/slider1.jpg";
-import slider2 from "../../assets/slider-image-2.jpeg";
-import slider3 from "../../assets/slider-image-3.jpeg";
+
 import slider4 from "../../assets/slider1.jpg";
 import slider5 from "../../assets/slider1.jpg";
 import Slider from 'react-slick';
