@@ -8,7 +8,7 @@
 
 
      .btn{
-        @apply bg-[#9BC2B0] text-white text-lg font-semibold w-full rounded-lg px-4 py-2 
+        @apply bg-[#9BC2AF] text-white text-lg font-semibold  rounded-lg px-4 py-2 
      }
      .btn2{
       @apply bg-emerald-600 text-white w-full rounded-lg px-4 py-3 

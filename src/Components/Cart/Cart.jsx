@@ -57,7 +57,7 @@ export default function Cart() {
     <>
      
 {CartDetails?.products.length > 0 ? <>
-     <h2 className="text-center text-2xl text-emerald-600 capitalize font-bold my-4">total price: ${CartDetails?.totalCartPrice}</h2>
+     <h2 className="text-center text-2xl text-[#6b9a83] capitalize font-bold my-4">total price: {CartDetails?.totalCartPrice} EGP</h2>
 
 <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
   <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -81,11 +81,11 @@ export default function Cart() {
       </tr>
     </thead>
     <tbody>
-      {CartDetails?.products.map((product)=> <tr key={product.product.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+      {CartDetails?.products.map((product)=> <tr key={product.product.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 ">
         <td className="p-4">
           <img src={product.product.imageCover} className="w-16 md:w-32 max-w-full max-h-full" alt="Apple Watch" />
         </td>
-        <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+        <td className="px-6 py-4 font-semibold text-xl text-gray-900 dark:text-white">
           {product.product.title}
         </td>
         <td className="px-6 py-4">
@@ -107,11 +107,11 @@ export default function Cart() {
             </button>
           </div>
         </td>
-        <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-          ${product.price * product.count}
+        <td className="px-6 py-4 font-semibold text-xl text-gray-900 dark:text-white">
+          {product.price * product.count} EGP
         </td>
         <td className="px-6 py-4">
-          <span className="cursor-pointer font-medium text-red-600 dark:text-red-500 hover:underline" onClick={()=> deleteItem(product.product.id )}>Remove</span>
+          <span className="cursor-pointer font-medium text-red-600 text-xl dark:text-red-500 hover:underline" onClick={()=> deleteItem(product.product.id )}>Remove</span>
         </td>
       </tr>)}
       
@@ -120,7 +120,7 @@ export default function Cart() {
   </table>
 
   <Link  to={`/checkout`}>
-  <button className="btn my-3">check out</button>
+  <button className="btn hover:bg-[#437e61] my-3">check out</button>
   </Link>
 </div>
 </> : <h1 className="text-emerald-600 font-bold text-center text-4xl my-8 ">No Product is added</h1> }

@@ -5,15 +5,28 @@ import { Link, useParams } from 'react-router-dom'
 import Slider from 'react-slick'
 import toast from 'react-hot-toast';
 import { CartContext } from '../../Context/CartContext';
-
+import { WishListContext } from '../../Context/WishListContext';
 export default function ProductDetalis() {
   let { addProductToCart, NumItem, setNumItem } = useContext(CartContext)
+   let { addProductToWishList, setNumItem2, NumItem2, getLoggedUserWishList, deleteWishListItem } = useContext(WishListContext);
+  
   let { id, category } = useParams()
   const [oneProduct, setoneProduct] = useState(null)
   const [relatedProduct, setrelatedProduct] = useState([])
   const [Loading, setLoading] = useState(false)
   const [CurrentId, setCurrentId] = useState(0)
+  const [CurrentId2, setCurrentId2] = useState(0);
+const [WishListDetails, setWishListDetails] = useState([]);
 
+  let token = localStorage.getItem("userToken");
+
+  // جلب الوشليست عند المكون
+  async function fetchWishList() {
+    let response = await getLoggedUserWishList();
+    if (response.data.status === "success") {
+      setWishListDetails(response.data.data);
+    }
+  }
   var settings = {
     dots: false,
     infinite: true,
@@ -63,16 +76,53 @@ export default function ProductDetalis() {
   }
 
   useEffect(() => {
+    fetchWishList();
     getOneProduct(id);
     getAllProduct();
   }, [id, category])
+
+   function isInWishList(productId) {
+    return WishListDetails.some(product => product.id === productId);
+  }
+
+   async function toggleWishList(productId) {
+    if (!token) {
+      toast.error("سجّل الدخول أولًا لإضافة المنتج إلى المفضلة");
+      return;
+    }
+
+    setCurrentId2(productId);
+    setLoading(true);
+
+    if (isInWishList(productId)) {
+      let response = await deleteWishListItem(productId);
+      if (response.data.status === "success") {
+        toast.success(response.data.message);
+        setNumItem2(NumItem2 - 1);
+        await fetchWishList();
+      } else {
+        toast.error(response.data.message || "فشل في الحذف من المفضلة");
+      }
+    } else {
+      let response = await addProductToWishList(productId);
+      if (response.data.status === "success") {
+        toast.success(response.data.message);
+        setNumItem2(NumItem2 + 1);
+        await fetchWishList();
+      } else {
+        toast.error(response.data.message || "فشل في الإضافة إلى المفضلة");
+      }
+    }
+
+    setLoading(false);
+  }
 
   return (
     <>
       {/* Container for product detail and images */}
       <div className="flex flex-col lg:flex-row items-center text-start gap-6 mb-10">
         {/* Images slider */}
-        <div className="w-full lg:w-1/4">
+        <div className="w-full lg:h-auto lg:w-1/4">
           <Slider {...settings}>
             {oneProduct?.images.map((src, idx) => (
               <img key={idx} src={src} alt={`product-img-${idx}`} className='w-full rounded-lg' />
@@ -81,21 +131,51 @@ export default function ProductDetalis() {
         </div>
 
         {/* Product details */}
-        <div className="w-full lg:w-3/4 p-5">
-          <h3 className="font-semibold capitalize text-2xl">{oneProduct?.title}</h3>
+        <div className="w-full lg:w-1/3 p-5">
+          <h3 className="font-semibold text-[#606160] capitalize text-2xl">{oneProduct?.title}</h3>
           <h4 className="text-gray-700 my-4">{oneProduct?.description}</h4>
-          <h4 className="text-gray-700 my-4">{oneProduct?.category.name}</h4>
+          <h4 className="text-[#9BC2AF] my-4">{oneProduct?.category.name}</h4>
 
           <div>
             <div className='flex justify-between my-5'>
               <span>{oneProduct?.price} EGP</span>
-              <span><i className='fas fa-star text-yellow-500'></i>{oneProduct?.ratingsAverage}</span>
-            </div>
-            <button onClick={() => addToCart(oneProduct.id)} className='btn px-6 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700 transition'>
+                 <span className="flex items-center gap-1">
+               <span className="text-sm text-gray-500">({oneProduct?.ratingsAverage})</span>
+  {Array.from({ length: 5 }, (_, index) => {
+    
+    const rating = oneProduct?.ratingsAverage;
+    if (rating >= index + 1) {
+      return <i key={index} className="fas fa-star text-yellow-500 text-sm"></i>;
+    } else if (rating >= index + 0.5) {
+      return <i key={index} className="fas fa-star-half-alt text-yellow-500 text-sm"></i>;
+    } else {
+      return <i key={index} className="far fa-star text-yellow-500 text-sm"></i>;
+    }
+  })}
+ 
+</span> </div>
+ <div className='flex justify-between '>
+            <button onClick={() => addToCart(oneProduct.id)} className='btn px-6 py-2 bg-[#9BC2AF] text-white rounded hover:bg-[#719f89] transition'>
               {Loading && CurrentId === oneProduct.id
                 ? <i className='fas fa-spinner fa-spin'></i>
                 : "Add To Cart"}
             </button>
+                   <button
+                    onClick={() => toggleWishList(oneProduct?.id)}
+                    className='px-2 '
+                    disabled={Loading && CurrentId2 === oneProduct?.id}
+                    style={{ fontSize: "1.6rem" }}
+                    aria-label={isInWishList(oneProduct?.id) ? "Remove from wishlist" : "Add to wishlist"}
+                  >
+                    {Loading && CurrentId2 === oneProduct?.id ? (
+                      <i className='fas fa-spinner fa-spin'></i>
+                    ) : isInWishList(oneProduct?.id) ? (
+                      <i className="fas fa-heart" style={{ color: " #606160" }}></i>
+                    ) : (
+                      <i className="far fa-heart"></i>
+                    )}
+                  </button>
+            </div>
           </div>
         </div>
       </div>
@@ -105,20 +185,52 @@ export default function ProductDetalis() {
         {relatedProduct.length > 0 ? relatedProduct.map((product) =>
           <div key={product.id} className=' px-4  w-1/2  md:w-1/3 lg:w-1/4'>
             <div className="product p-2 my-2 text-start border rounded shadow hover:shadow-lg transition">
-              <Link to={`/productdetalis/${product.id}/${product.category.name}`}>
+              <a href={`/productdetalis/${product.id}/${product.category.name}`}>
                 <img src={product.imageCover} alt={product.title} className='w-full rounded' />
-                <h3 className='text-emerald-600 mt-2'>{product.category.name}</h3>
-                <h3 className='font-semibold mb-1'>{product.title.split(" ").slice(0, 2).join(" ")}</h3>
+                 <h3 className='font-semibold text-2xl mb-1'>{product.title.split(" ").slice(0, 2).join(" ")}</h3>
+                <h3 className='text-[#9BC2AF] text-lg mt-2'>{product.category.name}</h3>
+               
                 <div className='flex justify-between p-3'>
                   <span>{product.price} EGP</span>
-                  <span><i className='fas fa-star text-yellow-500'></i>{product.ratingsAverage}</span>
-                </div>
-              </Link>
-              <button onClick={() => addToCart(product.id)} className='btn px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700 transition w-full'>
+                     <span className="flex items-center gap-1">
+               <span className="text-sm text-gray-500">({product.ratingsAverage})</span>
+  {Array.from({ length: 5 }, (_, index) => {
+    
+    const rating = product.ratingsAverage;
+    if (rating >= index + 1) {
+      return <i key={index} className="fas fa-star text-yellow-500 text-sm"></i>;
+    } else if (rating >= index + 0.5) {
+      return <i key={index} className="fas fa-star-half-alt text-yellow-500 text-sm"></i>;
+    } else {
+      return <i key={index} className="far fa-star text-yellow-500 text-sm"></i>;
+    }
+  })}
+ 
+</span> </div>
+              </a>
+           <div className='flex justify-between'>
+   <button onClick={() => addToCart(product.id)} className='btn px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700 transition'>
                 {Loading && CurrentId === product.id
                   ? <i className='fas fa-spinner fa-spin'></i>
                   : "Add To Cart"}
               </button>
+               <button
+                    onClick={() => toggleWishList(product.id)}
+                    className='px-2 '
+                    disabled={Loading && CurrentId2 === product.id}
+                    style={{ fontSize: "1.6rem" }}
+                    aria-label={isInWishList(product.id) ? "Remove from wishlist" : "Add to wishlist"}
+                  >
+                    {Loading && CurrentId2 === product.id ? (
+                      <i className='fas fa-spinner fa-spin'></i>
+                    ) : isInWishList(product.id) ? (
+                      <i className="fas fa-heart" style={{ color: " #606160" }}></i>
+                    ) : (
+                      <i className="far fa-heart"></i>
+                    )}
+                  </button>
+
+           </div>
             </div>
           </div>
         ) : (

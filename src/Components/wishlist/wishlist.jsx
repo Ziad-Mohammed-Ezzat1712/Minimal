@@ -100,11 +100,11 @@ export default function Wishlist() {
       </tr>
     </thead>
     <tbody>
-      {WishListDetails?.map((product)=> <tr key={product.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+      {WishListDetails?.map((product)=> <tr key={product.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 ">
         <td className="p-4">
           <img src={product.imageCover} className="w-16 md:w-32 max-w-full max-h-full" alt="Apple Watch" />
         </td>
-        <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+        <td className="px-6 py-4 font-semibold text-xl text-gray-900 dark:text-white">
           {product.title}
         </td>
         <td className="px-6 py-4">
@@ -112,16 +112,16 @@ export default function Wishlist() {
           
             <div>
             <button onClick={()=>
-              addToCart(product.id)} className='btn'>Add To Cart</button>
+              addToCart(product.id)} className='btn hover:bg-[#437e61]'>Add To Cart</button>
             </div>
             
           </div>
         </td>
-        <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-          ${product.price }
+        <td className="px-6 py-4 font-semibold text-xl text-gray-900 dark:text-white">
+          {product.price } EGP
         </td>
         <td className="px-6 py-4">
-          <span className="cursor-pointer font-medium text-red-600 dark:text-red-500 hover:underline" onClick={()=> deleteItem(product.id)}>Remove</span>
+          <span className="cursor-pointer font-medium text-xl text-red-600 dark:text-red-500 hover:underline" onClick={()=> deleteItem(product.id)}>Remove</span>
         </td>
       </tr>)}
       
@@ -131,7 +131,7 @@ export default function Wishlist() {
 
   
 </div>
-</>: <h1 className="text-emerald-600 font-bold text-center text-4xl my-8 ">No Product is added</h1> }
+</>: <h1 className="text-emerald-600  font-bold text-center text-4xl my-8 ">No Product is added</h1> }
     </>
     
   );

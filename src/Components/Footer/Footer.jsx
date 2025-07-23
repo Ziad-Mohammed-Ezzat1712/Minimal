@@ -5,7 +5,7 @@ export default function Footer() {
  return (
     <>
       {/* Main Footer */}
-      <footer className="bg-gray-200 text-black px-6 md:px-12 py-12">
+      <footer className="bg-[#606160] text-black px-6 md:px-12 py-12">
         <div className="max-w-screen-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Logo */}
           <div className="flex flex-col gap-4 items-start">
@@ -34,13 +34,13 @@ export default function Footer() {
           </div>
 
           {/* Blog Posts */}
-          <div className="flex flex-col items-start">
+          {/* <div className="flex flex-col items-start">
             <h3 className="font-semibold text-lg mb-4">BLOG POSTS</h3>
             <p className="mb-2 cursor-pointer hover:underline">Vaping for Beginners</p>
             <p className="mb-2 cursor-pointer hover:underline">Tips On Buying Your First Vape</p>
             <p className="mb-2 cursor-pointer hover:underline">All Vape Guides</p>
             <p className="mb-2 cursor-pointer hover:underline">Mystery Bags</p>
-          </div>
+          </div> */}
         </div>
       </footer>
 

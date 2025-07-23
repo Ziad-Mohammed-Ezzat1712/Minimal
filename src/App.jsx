@@ -8,7 +8,7 @@ import Login from './Components/Login/Login';
 import Register from './Components/Register/Register';
 import NotFound from './Components/NotFound/NotFound';
 import Brands from './Components/Brands/Brands';
-import Categories from './Components/Categories/Categories';
+import Categories from './Components/Boys/Boys';
 import Products from './Components/Products/Products';
 import UserContextProvider from './Context/UserContext';
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute';
@@ -22,8 +22,11 @@ import WishListContextProvider from './Context/WishListContext';
 import Wishlist from './Components/wishlist/wishlist';
 import BrandContextProvider from './Context/BrandContext';
 import VerifiyCode from './Components/VerifiyCode/VerifiyCode';
+import AdminAddProduct from './Components/AdminAddProduct/AdminAddProduct';
 
-
+import { LanguageProvider } from './Context/LanguageContext';
+import Boys from './Components/Boys/Boys';
+import Girls from './Components/Girls/Girls';
 
 
 
@@ -46,9 +49,14 @@ let x = createBrowserRouter([
     {path:"checkout",element:<Checkout/>},
     {path:"allorders",element:<ProtectedRoute><Allorders/></ProtectedRoute>},
     {path:"productdetalis/:id/:category",element:<ProtectedRoute><ProductDetalis/></ProtectedRoute>},
-    {path:"categories",element:<ProtectedRoute><Categories/></ProtectedRoute>},
-
+    {path:"boys",element:<ProtectedRoute><Boys/></ProtectedRoute>},
+    {path:"girls",element:<ProtectedRoute><Girls/></ProtectedRoute>},
+    
   ]},
+
+  {
+    path:"adminaddproduct", element:<AdminAddProduct/>
+  }
   
 ]
 
@@ -60,6 +68,7 @@ function App() {
   return(
   
   <>
+   <LanguageProvider>
   <UserContextProvider>
     <CartContextProvider>
       <WishListContextProvider>
@@ -71,6 +80,7 @@ function App() {
     </CartContextProvider>
   
   </UserContextProvider>
+  </LanguageProvider>
   </>
   )
 }
