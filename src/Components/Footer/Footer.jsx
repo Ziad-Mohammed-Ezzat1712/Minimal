@@ -5,7 +5,7 @@ export default function Footer() {
  return (
     <>
       {/* Main Footer */}
-      <footer className="bg-[#606160] text-black px-6 md:px-12 py-12">
+      <footer className="bg-[#b6b6b6] text-black px-6 md:px-12 py-12">
         <div className="max-w-screen-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Logo */}
           <div className="flex flex-col gap-4 items-start">

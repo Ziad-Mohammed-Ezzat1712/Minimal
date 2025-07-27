@@ -117,7 +117,7 @@ export default function ReacentProduct() {
             <div className="product p-2 my-2 text-start">
               <Link to={`productdetalis/${product.id}/${product.category.name}`}>
                 <img src={product.imageCover} className='w-full' alt="" />
-                <h3 className='font-semibold mb-1 text-2xl'>
+                <h3 className='font-semibold mb-1 text-xl'>
                   {product.title.split(" ").slice(0, 2).join(" ")}
                 </h3>
                 <h3 className='text-[#9BC2AF] text-lg'>{product.category.name}</h3>

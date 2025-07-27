@@ -187,7 +187,7 @@ const [WishListDetails, setWishListDetails] = useState([]);
             <div className="product p-2 my-2 text-start border rounded shadow hover:shadow-lg transition">
               <a href={`/productdetalis/${product.id}/${product.category.name}`}>
                 <img src={product.imageCover} alt={product.title} className='w-full rounded' />
-                 <h3 className='font-semibold text-2xl mb-1'>{product.title.split(" ").slice(0, 2).join(" ")}</h3>
+                 <h3 className='font-semibold text-xl mb-1'>{product.title.split(" ").slice(0, 2).join(" ")}</h3>
                 <h3 className='text-[#9BC2AF] text-lg mt-2'>{product.category.name}</h3>
                
                 <div className='flex justify-between p-3'>
