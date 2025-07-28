@@ -2,8 +2,8 @@
 import React from 'react';
 import slider1 from "../../assets/slider1.jpg";
 
-import slider4 from "../../assets/slider1.jpg";
-import slider5 from "../../assets/slider1.jpg";
+import slider4 from "../../assets/slider2.png";
+import slider5 from "../../assets/slider3.png";
 import Slider from 'react-slick';
 
 export default function MainSlider() {

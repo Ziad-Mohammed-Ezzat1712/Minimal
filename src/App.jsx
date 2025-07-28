@@ -27,9 +27,8 @@ import AdminAddProduct from './Components/AdminAddProduct/AdminAddProduct';
 import { LanguageProvider } from './Context/LanguageContext';
 import Boys from './Components/Boys/Boys';
 import Girls from './Components/Girls/Girls';
-
-
-
+import MyAccount from './Components/MyAccount/MyAccount';
+import OrderSuccess from './Components/OrderSuccess/OrderSuccess';
 
 
 
@@ -51,6 +50,8 @@ let x = createBrowserRouter([
     {path:"productdetalis/:id/:category",element:<ProtectedRoute><ProductDetalis/></ProtectedRoute>},
     {path:"boys",element:<ProtectedRoute><Boys/></ProtectedRoute>},
     {path:"girls",element:<ProtectedRoute><Girls/></ProtectedRoute>},
+    {path:"myaccount",element:<ProtectedRoute><MyAccount/></ProtectedRoute>},
+    {path:"ordersuccess",element:<ProtectedRoute><OrderSuccess/></ProtectedRoute>},
     
   ]},
 

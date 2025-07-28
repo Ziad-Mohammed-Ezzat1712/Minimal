@@ -15,18 +15,18 @@ export default function CartContextProvider(props){
 
     const [CartId, setCartId] = useState(0)
     const [NumItem, setNumItem] = useState(0)
+    const [CartDetails, setCartDetails] = useState(null);
 
-function addProductToCart(productId){
 
-    return axios.post(`https://ecommerce.routemisr.com/api/v1/cart`,{
-        productId:productId
-    },{
-
-        headers
-        
-    })
-    .then((res)=> res)
-    .catch((err) => err)
+function addProductToCart(productId, count = 1) {
+  return axios.post(`https://ecommerce.routemisr.com/api/v1/cart`, {
+    productId,
+    count, // 👈 الكمية هنا
+  }, {
+    headers
+  })
+    .then((res) => res)
+    .catch((err) => err);
 }
 
 function getLoggedUserCart(){
@@ -39,6 +39,7 @@ function getLoggedUserCart(){
     })
     .then((res)=> { 
 setNumItem(res.data.numOfCartItems)
+setCartDetails(res.data.data);
 setCartId(res.data.data._id)
 
         return res
@@ -82,7 +83,7 @@ useEffect(() => {
 
 
 
-    return <CartContext.Provider  value={{addProductToCart , getLoggedUserCart,updateCartProductQuantity,deleteCartItem,checkout,CartId , NumItem,setNumItem}}>
+    return <CartContext.Provider  value={{addProductToCart , getLoggedUserCart,updateCartProductQuantity,deleteCartItem,checkout,CartId , NumItem,setNumItem,CartDetails,setCartDetails }}>
 
         {props.children}
     </CartContext.Provider>
