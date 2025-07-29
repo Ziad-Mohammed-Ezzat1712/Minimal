@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 import { WishListContext } from '../../Context/WishListContext';
 import { LanguageContext } from '../../Context/LanguageContext';
 
-export default function ReacentProduct({ limit }) {
+export default function AllProducts({ limit }) {
   const { isArabic } = useContext(LanguageContext);
   const { addProductToCart, NumItem, setNumItem } = useContext(CartContext);
   const {
@@ -103,7 +103,7 @@ export default function ReacentProduct({ limit }) {
       ) : displayedProducts.length > 0 ? (
         displayedProducts.map((product) => (
           <div key={product.id} className="product p-2 text-start border rounded shadow hover:shadow-lg transition">
-            <Link to={`/productdetalis/${product.id}/${product.category.name}`}>
+            <Link to={`oneproduct/${product.id}/${product.category.name}`}>
               <img src={product.imageCover} className="w-full object-contain h-56 mb-2" alt={product.title} />
               <h3 className="font-semibold text-xl mb-2">
                 {product.title.split(" ").slice(0, 2).join(" ")}
@@ -159,3 +159,4 @@ export default function ReacentProduct({ limit }) {
     </div>
   );
 }
+

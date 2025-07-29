@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 import { CartContext } from '../../Context/CartContext';
 import { WishListContext } from '../../Context/WishListContext';
 import InfoTabs from '../InfoTabs/InfoTabs';
-export default function ProductDetalis() {
+export default function OneProduct() {
   let { addProductToCart, NumItem, setNumItem } = useContext(CartContext);
   let { addProductToWishList, setNumItem2, NumItem2, getLoggedUserWishList, deleteWishListItem } = useContext(WishListContext);
 

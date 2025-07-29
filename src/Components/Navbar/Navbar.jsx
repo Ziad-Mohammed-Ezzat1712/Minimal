@@ -6,12 +6,14 @@ import { UserContext } from '../../Context/UserContext';
 import { CartContext } from '../../Context/CartContext';
 import { WishListContext } from '../../Context/WishListContext';
 import { LanguageContext } from '../../Context/LanguageContext';
+import LoginModal from '../LoginModal/LoginModal';
 
 export default function Navbar() {
   const { NumItem } = useContext(CartContext);
   const { userLogin, setuserLogin } = useContext(UserContext);
   const { NumItem2 } = useContext(WishListContext);
   const { isArabic, toggleLanguage } = useContext(LanguageContext);
+const [showLoginModal, setShowLoginModal] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -40,6 +42,7 @@ export default function Navbar() {
   });
 
   return (
+     <>
     <nav className="top-0 right-0 left-0 z-50 relative">
       <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
 
@@ -63,10 +66,10 @@ export default function Navbar() {
         {/* Main Links */}
         <div className={`w-full lg:flex lg:items-center lg:w-auto ${isOpen ? "block" : "hidden"}`}>
           <ul className="flex flex-col text-xl font-semibold lg:flex-row gap-4 lg:gap-5 mt-4 lg:mt-0 text-center lg:text-start">
-            <li><Link to="/" style={getLinkStyle('/')} className="font-semibold">{translations.home}</Link></li>
-            <li><Link to="/boys" style={getLinkStyle('/boys')} className="font-semibold">{translations.boys}</Link></li>
-            <li><Link to="/girls" style={getLinkStyle('/girls')} className="font-semibold">{translations.girls}</Link></li>
-            <li><Link to="/brands" style={getLinkStyle('/brands')} className="font-semibold">{translations.brands}</Link></li>
+            <li><Link to="/" style={getLinkStyle('/')} className="font-semibold hover:text-[#E76840]">{translations.home}</Link></li>
+            <li><Link to="/boys" style={getLinkStyle('/boys')} className="font-semibold hover:text-[#E76840]">{translations.boys}</Link></li>
+            <li><Link to="/girls" style={getLinkStyle('/girls')} className="font-semibold hover:text-[#E76840]">{translations.girls}</Link></li>
+            <li><Link to="/brands" style={getLinkStyle('/brands')} className="font-semibold hover:text-[#E76840]">{translations.brands}</Link></li>
 
             {/* Mobile Auth Links */}
             <div className='lg:hidden text-xl font-semibold flex flex-col items-center gap-2 mt-3'>
@@ -81,11 +84,31 @@ export default function Navbar() {
                 </>
               ) : (
                 <>
-                  <li><Link className='text-slate-600' to="/wishlist"><i className="fas fa-heart"></i></Link></li>
-                  <li><Link className='text-slate-600' to="/cart"><i className="fa-solid fa-cart-shopping"></i></Link></li>
-                  <Link to="/login" style={getLinkStyle('/login')} className="text-slate-700">{translations.login}</Link>
-                  <Link to="/register" style={getLinkStyle('/register')} className="text-slate-700">{translations.register}</Link>
-                </>
+                  <li><Link className='text-slate-600' to="/wishlist"><div className="relative">
+  <i className="fa-solid fa-heart text-[25px]"></i>
+  {NumItem2 > 0 && (
+    <span className="absolute -top-2 -right-2 bg-[#E76840] text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+      {NumItem2}
+    </span>
+  )}
+</div>
+</Link></li>
+                  <li><Link className='text-slate-600' to="/cart"><div className="relative">
+  <i className="fa-solid fa-cart-shopping text-[25px]"></i>
+  {NumItem > 0 && (
+    <span className="absolute -top-2 -right-2 bg-[#9BC2AF] text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+      {NumItem}
+    </span>
+  )}
+</div>
+</Link></li>
+                  <li>
+  <button onClick={() => setShowLoginModal(true)} className="text-slate-700">
+    {translations.login}
+  </button>
+</li>
+
+                  </>
               )}
             </div>
           </ul>
@@ -103,8 +126,24 @@ export default function Navbar() {
 
           {/* Wishlist + Cart */}
           <ul className="flex gap-4 text-xl font-semibold text-slate-600">
-            <li><Link className='text-slate-600' to="/wishlist"><i className="fas fa-heart"></i></Link></li>
-            <li><Link className='text-slate-600' to="/cart"><i className="fa-solid fa-cart-shopping"></i></Link></li>
+            <li><Link className='text-slate-600' to="/wishlist"><div className="relative">
+  <i className="fa-solid fa-heart text-[25px]"></i>
+  {NumItem2 > 0 && (
+    <span className="absolute -top-2 -right-2 bg-[#E76840] text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+      {NumItem2}
+    </span>
+  )}
+</div>
+</Link></li>
+            <li><Link className='text-slate-600' to="/cart"><div className="relative">
+  <i className="fa-solid fa-cart-shopping text-[25px]"></i>
+  {NumItem > 0 && (
+    <span className="absolute -top-2 -right-2 bg-[#9BC2AF] text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+      {NumItem}
+    </span>
+  )}
+</div>
+</Link></li>
           </ul>
 
           {/* Auth Links */}
@@ -116,13 +155,19 @@ export default function Navbar() {
            </>
             ) : (
               <>
-                <li><Link to="/login" style={getLinkStyle('/login')} className="text-slate-700">{translations.login}</Link></li>
-                <li><Link to="/register" style={getLinkStyle('/register')} className="text-slate-700">{translations.register}</Link></li>
-              </>
+                <li>
+  <button onClick={() => setShowLoginModal(true)} className="text-slate-700">
+    {translations.login}
+  </button>
+</li>
+
+                </>
             )}
           </ul>
         </div>
       </div>
     </nav>
+    {showLoginModal && <LoginModal onClose={() => setShowLoginModal(false)} />}
+</>
   );
 }

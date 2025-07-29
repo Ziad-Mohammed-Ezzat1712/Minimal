@@ -17,24 +17,25 @@ export default function Footer() {
           {/* Need Help */}
           <div className="flex flex-col items-start">
             <h3 className="font-semibold text-[30px] mb-4">Quick Links</h3>
-            <Link to={'/'} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#606160]">Home</Link>
-            <Link to={'/girls'} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#606160]">Girls</Link>
-            <Link to={'/boys'} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#606160]">Boys</Link>
-            <Link to={'/brands'} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#606160]">Brand</Link>
+            <Link to={'/'} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#E76840]">Home</Link>
+            <Link to={'/girls'} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#E76840]">Girls</Link>
+            <Link to={'/boys'} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#E76840]">Boys</Link>
+            <Link to={'/brands'} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#E76840]">Brand</Link>
           </div>
        <div className="flex flex-col items-start">
             <h3 className="font-semibold text-[30px] mb-4">Quick Links</h3>
-            <Link to={''} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#606160]">FAQ</Link>
-            <Link to={''} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#606160]">Returns & Exchanges</Link>
-            <Link to={''} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#606160]">Shipping Info</Link>
-            <Link to={''} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#606160]">Contact Us</Link>
+            <Link to={''} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#E76840]">FAQ</Link>
+            <Link to={''} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#E76840]">Returns & Exchanges</Link>
+            <Link to={''} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#E76840]">Shipping Info</Link>
+            <Link to={''} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#E76840]">Contact Us</Link>
           </div>
           {/* Info */}
               <div className="flex flex-col items-start">
             <h3 className="font-semibold text-[30px] mb-4">Follow US</h3>
-            <Link to={''} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#606160]"><i className='fab fa-instagram '></i> Instagram</Link>
-            <Link to={''} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#606160]"><i className='fab fa-facebook-f'></i> Facebook</Link>
-            <Link to={''} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#606160]"><i className='fab fa-twitter'></i> Twitter</Link>
+            <Link to={'https://www.instagram.com/minimal_kids_wear/#'} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#E76840]"><i className='fab fa-instagram '></i> Instagram</Link>
+            <Link to={'https://www.facebook.com/profile.php?id=61577103311162'} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#E76840]"><i className='fab fa-facebook-f'></i> Facebook</Link>
+            <Link to={'https://www.instagram.com/minimal_kids_wear/#'} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#E76840]"><i className='fab fa-twitter'></i> Twitter</Link>
+            <Link to={'https://www.tiktok.com/@minimal_kiddy_wear'} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#E76840]"><i className='fab fa-tiktok'></i> Tiktok</Link>
    
           </div>
 

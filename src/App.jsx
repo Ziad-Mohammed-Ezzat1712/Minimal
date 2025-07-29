@@ -29,7 +29,8 @@ import Boys from './Components/Boys/Boys';
 import Girls from './Components/Girls/Girls';
 import MyAccount from './Components/MyAccount/MyAccount';
 import OrderSuccess from './Components/OrderSuccess/OrderSuccess';
-
+import AllProducts from './Components/AllProducts/AllProducts';
+import OneProduct from './Components/OneProduct/OneProduct';
 
 
 // eslint-disable-next-line no-unused-vars
@@ -38,6 +39,7 @@ let x = createBrowserRouter([
     {index : true,element:<Home/> },
     {path:"cart",element:<ProtectedRoute><Cart/></ProtectedRoute>},
     {path:"login",element:<Login/>},
+    {path:"allProducts",element:<AllProducts/>},
     {path:"register",element:<Register/>},
     {path:"forgetpassword",element:<ForgetPassword/>},
     {path:"products",element:<Products/>},
@@ -48,6 +50,7 @@ let x = createBrowserRouter([
     {path:"checkout",element:<Checkout/>},
     {path:"allorders",element:<ProtectedRoute><Allorders/></ProtectedRoute>},
     {path:"productdetalis/:id/:category",element:<ProtectedRoute><ProductDetalis/></ProtectedRoute>},
+    {path:"allProducts/oneproduct/:id/:category",element:<ProtectedRoute><OneProduct/></ProtectedRoute>},
     {path:"boys",element:<ProtectedRoute><Boys/></ProtectedRoute>},
     {path:"girls",element:<ProtectedRoute><Girls/></ProtectedRoute>},
     {path:"myaccount",element:<ProtectedRoute><MyAccount/></ProtectedRoute>},
