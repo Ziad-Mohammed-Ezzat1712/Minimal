@@ -1,57 +1,55 @@
 import axios from 'axios';
-import { useFormik } from 'formik'
-import React, { useContext, useState } from 'react'
-import * as yup from "yup"
+import { useFormik } from 'formik';
+import React, { useContext, useState } from 'react';
+import * as yup from 'yup';
 import { UserContext } from '../../Context/UserContext';
+import toast from 'react-hot-toast';
 
 export default function LoginForm({ onClose, onSwitchMode }) {
-  let { setuserLogin } = useContext(UserContext)
-  const [errorMessage, seterrorMessage] = useState("")
-  const [isLoading, setisLoading] = useState(false)
+  const { setuserLogin } = useContext(UserContext);
+  const [errorMessage, seterrorMessage] = useState('');
+  const [isLoading, setisLoading] = useState(false);
 
   async function handleLogin(values) {
-    setisLoading(true)
+    setisLoading(true);
     try {
       const res = await axios.post(`https://ecommerce.routemisr.com/api/v1/auth/signin`, values);
       setisLoading(false);
 
-      if (res.data.message === "success") {
-        localStorage.setItem("userToken", res.data.token);
+      if (res.data.message === 'success') {
+        localStorage.setItem('userToken', res.data.token);
         setuserLogin(res.data.token);
-        onClose();
+        toast.success('Login successful!');
+        onClose(); // يغلق المودال تلقائياً
       }
     } catch (error) {
       setisLoading(false);
-      seterrorMessage(error.response?.data?.message || "Login failed");
+      const message = error.response?.data?.message || 'Login failed';
+      seterrorMessage(message);
+      toast.error(message);
     }
   }
 
-  let validationSchema = yup.object().shape({
-    email: yup.string().email("email not valid").required("email is required"),
-    password: yup.string().required("password is required").min(6, "password min length is 6"),
+  const validationSchema = yup.object().shape({
+    email: yup.string().email('Email not valid').required('Email is required'),
+    password: yup.string().required('Password is required').min(6, 'Password min length is 6'),
   });
 
-  let formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
+  const formik = useFormik({
+    initialValues: { email: '', password: '' },
     validationSchema,
     onSubmit: handleLogin,
-  })
+  });
 
   return (
     <>
       {errorMessage && (
-        <div className='text-red-600 font-bold rounded-lg p-3 mb-4 text-center'>
-          {errorMessage}
-        </div>
+        <div className="text-red-600 font-bold rounded-lg p-3 mb-4 text-center">{errorMessage}</div>
       )}
 
-      
-
       <form onSubmit={formik.handleSubmit} className="max-w-md mx-auto">
-        <div className="text-left relative z-0 w-full mb-5 group">
+        {/* Email Input */}
+        <div className="relative text-left z-0 w-full mb-5 group">
           <input
             type="email"
             name="email"
@@ -69,12 +67,13 @@ export default function LoginForm({ onClose, onSwitchMode }) {
           >
             Enter Your Email
           </label>
-          {formik.errors.email && formik.touched.email ? (
+          {formik.errors.email && formik.touched.email && (
             <div className="text-red-800 text-sm mt-1">{formik.errors.email}</div>
-          ) : null}
+          )}
         </div>
 
-        <div className="text-left relative z-0 w-full mb-5 group">
+        {/* Password Input */}
+        <div className="relative text-left z-0 w-full mb-5 group">
           <input
             type="password"
             name="password"
@@ -92,11 +91,12 @@ export default function LoginForm({ onClose, onSwitchMode }) {
           >
             Enter Your Password
           </label>
-          {formik.errors.password && formik.touched.password ? (
+          {formik.errors.password && formik.touched.password && (
             <div className="text-red-800 text-sm mt-1">{formik.errors.password}</div>
-          ) : null}
+          )}
         </div>
 
+        {/* Forget Password */}
         <div className="mt-4 text-right">
           <button
             type="button"
@@ -107,12 +107,13 @@ export default function LoginForm({ onClose, onSwitchMode }) {
           </button>
         </div>
 
+        {/* Submit Button */}
         <button
           type="submit"
-          className=" font-semibold text-white bg-[#9BC2AF] hover:bg-[#E76840] text-[20px] px-52 focus:ring-4 focus:outline-none focus:ring-emerald-300 rounded-lg w-full sm:w-auto  py-2.5 mt-6 text-center"
+          className="font-semibold text-white bg-[#9BC2AF] hover:bg-[#E76840] text-[20px] px-52 focus:ring-4 focus:outline-none focus:ring-emerald-300 rounded-lg w-full sm:w-auto py-2.5 mt-6 text-center"
           disabled={isLoading}
         >
-          {isLoading ? <i className='fas fa-spinner fa-spin'></i> : "Login"}
+          {isLoading ? <i className="fas fa-spinner fa-spin"></i> : 'Login'}
         </button>
       </form>
     </>

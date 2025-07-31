@@ -2,7 +2,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.css'
 import Home from './Components/Home/Home';
 import Layout from './Components/Layout/Layout';
-
 import Cart from './Components/Cart/Cart';
 import Login from './Components/Login/Login';
 import Register from './Components/Register/Register';
@@ -23,7 +22,6 @@ import Wishlist from './Components/wishlist/wishlist';
 import BrandContextProvider from './Context/BrandContext';
 import VerifiyCode from './Components/VerifiyCode/VerifiyCode';
 import AdminAddProduct from './Components/AdminAddProduct/AdminAddProduct';
-
 import { LanguageProvider } from './Context/LanguageContext';
 import Boys from './Components/Boys/Boys';
 import Girls from './Components/Girls/Girls';
@@ -31,8 +29,7 @@ import MyAccount from './Components/MyAccount/MyAccount';
 import OrderSuccess from './Components/OrderSuccess/OrderSuccess';
 import AllProducts from './Components/AllProducts/AllProducts';
 import OneProduct from './Components/OneProduct/OneProduct';
-
-
+import LoginModal from './Components/LoginModal/LoginModal';
 // eslint-disable-next-line no-unused-vars
 let x = createBrowserRouter([
   {path : "" , element:<Layout/>,children:[
@@ -44,7 +41,7 @@ let x = createBrowserRouter([
     {path:"forgetpassword",element:<ForgetPassword/>},
     {path:"products",element:<Products/>},
     {path:"*",element:<Home/>},
-    {path:"brands",element:<ProtectedRoute><Brands/></ProtectedRoute>},
+    {path:"brands",element:<Brands/>},
     {path:"wishlist",element:<ProtectedRoute><Wishlist/></ProtectedRoute>},
     {path:"verifycode",element:<VerifiyCode/>},
     {path:"checkout",element:<Checkout/>},
@@ -55,22 +52,14 @@ let x = createBrowserRouter([
     {path:"girls",element:<ProtectedRoute><Girls/></ProtectedRoute>},
     {path:"myaccount",element:<ProtectedRoute><MyAccount/></ProtectedRoute>},
     {path:"ordersuccess",element:<ProtectedRoute><OrderSuccess/></ProtectedRoute>},
-    
   ]},
-
   {
     path:"adminaddproduct", element:<AdminAddProduct/>
   }
-  
 ]
-
 )
-
 function App() {
-
-
   return(
-  
   <>
    <LanguageProvider>
   <UserContextProvider>
@@ -82,11 +71,9 @@ function App() {
       </WishListContextProvider>
     <Toaster/>
     </CartContextProvider>
-  
   </UserContextProvider>
   </LanguageProvider>
   </>
   )
 }
-
 export default App;

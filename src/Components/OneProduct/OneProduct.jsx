@@ -20,7 +20,7 @@ export default function OneProduct() {
   const [CurrentId2, setCurrentId2] = useState(0);
   const [WishListDetails, setWishListDetails] = useState([]);
   const [count, setCount] = useState(1); // 👈 التحكم في الكمية
-
+ const [selectedSize, setSelectedSize] = useState('');
   let token = localStorage.getItem("userToken");
 
   async function fetchWishList() {
@@ -155,7 +155,7 @@ async function addToCart(id) {
 
           <div>
             <div className='flex justify-between my-5'>
-              <span>{oneProduct?.price * count} EGP</span>
+              <span className='text-[#E76840] text-[30px] font-semibold'>{oneProduct?.price * count} EGP</span>
               <span className="flex items-center gap-1">
                 <span className="text-sm text-gray-500">({oneProduct?.ratingsAverage})</span>
                 {Array.from({ length: 5 }, (_, index) => {
@@ -170,7 +170,26 @@ async function addToCart(id) {
                 })}
               </span>
             </div>
+ {/* size */}
 
+<div className="my-6">
+  <h5 className="mb-2  font-medium text-[30px]">Select Size:</h5>
+  <div className="flex gap-3">
+    {['S', 'M', 'L', 'XL'].map((size) => (
+      <button
+        key={size}
+        onClick={() => setSelectedSize(size)}
+        className={`px-4 py-1 border rounded-full transition 
+          ${selectedSize === size ? 'bg-[#E76840] text-white border-[#E76840]' : 'bg-white text-gray-700 border-gray-300'}
+        `}
+      >
+        {size}
+      </button>
+    ))}
+  </div>
+</div>
+
+             {/* size */}
             {/* Quantity buttons */}
             <div className="flex items-center">
               <button onClick={() => setCount(prev => Math.max(1, prev - 1))} className="h-6 w-6 text-gray-500 bg-white border rounded-full flex items-center justify-center">
@@ -188,7 +207,7 @@ async function addToCart(id) {
 
             {/* Cart & Wishlist buttons */}
             <div className='flex justify-between mt-4'>
-              <button onClick={() => addToCart(oneProduct.id)} className='btn px-6 py-2 bg-[#9BC2AF] text-white rounded hover:bg-[#719f89] transition'>
+              <button onClick={() => addToCart(oneProduct.id)} className='btn px-6 py-2 bg-[#9BC2AF] text-white rounded hover:bg-[#E76840] transition'>
                 {Loading && CurrentId === oneProduct.id
                   ? <i className='fas fa-spinner fa-spin'></i>
                   : "Add To Cart"}
@@ -227,7 +246,7 @@ async function addToCart(id) {
                 <h3 className='text-[#9BC2AF] text-lg mt-2'>{product.category.name}</h3>
 
                 <div className='flex justify-between p-3'>
-                  <span>{product.price} EGP</span>
+                  <span className='text-[#E76840] text-[20px]'>{product.price} EGP</span>
                   <span className="flex items-center gap-1">
                     <span className="text-sm text-gray-500">({product.ratingsAverage})</span>
                     {Array.from({ length: 5 }, (_, index) => {
@@ -244,7 +263,7 @@ async function addToCart(id) {
                 </div>
               </a>
               <div className='flex justify-between'>
-                <button onClick={() => addToCart(product.id)} className='btn px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700 transition'>
+                <button onClick={() => addToCart(product.id)} className='btn px-4 py-2 bg-[#9BC2AF] text-white rounded hover:bg-[#E76840] transition'>
                   {Loading && CurrentId === product.id
                     ? <i className='fas fa-spinner fa-spin'></i>
                     : "Add To Cart"}

@@ -3,10 +3,10 @@ import LoginForm from '../LoginForm/LoginForm';
 import RegisterForm from '../RegisterForm/RegisterForm';
 import ForgetPassword from '../ForgetPassword/ForgetPassword';
 import illustration from '../../assets/log.png';
+import { Link } from 'react-router-dom';
 
 export default function LoginModal({ onClose }) {
   const [mode, setMode] = useState('login'); // 'login' | 'register' | 'forget'
-
   const activeClass = "bg-[#E76840] text-white";
   const inactiveClass = "text-gray-600 hover:bg-gray-200";
 
@@ -16,11 +16,6 @@ export default function LoginModal({ onClose }) {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 p-4">
-      {/* 
-          هنا أضفت max-h-[90vh] و overflow-y-auto 
-          ليكون ارتفاع المودال لا يتجاوز 90% من ارتفاع الشاشة، 
-          مع ظهور شريط تمرير عمودي لو المحتوى أكبر
-      */}
       <div className="bg-white rounded-lg w-full max-w-xl p-6 relative shadow-lg max-h-[90vh] overflow-y-auto">
         <button
           onClick={onClose}
@@ -30,7 +25,6 @@ export default function LoginModal({ onClose }) {
           &times;
         </button>
 
-        {/* الصورة التوضيحية */}
         <div className="flex justify-center mb-6">
           <img
             src={illustration}
@@ -38,7 +32,16 @@ export default function LoginModal({ onClose }) {
             className="h-80 object-contain"
           />
         </div>
-        <h1 className='font-bold text-2xl mb-6 text-center'>Hala! Let's get started</h1>
+
+        <h1 className="font-bold text-2xl mb-6 text-center">Hala! Let's get started</h1>
+
+        <div className="text-right">
+          <Link to={'/'}>
+            <button className="bg-[#9BC2AF] my-3 p-2 rounded-xl text-white font-semibold hover:bg-[#E76840] hover:border-[#E76840] ">
+              Back To Home
+            </button>
+          </Link>
+        </div>
 
         {/* أزرار اختيار الوضع */}
         <div className="flex justify-center bg-[#9BC2AF] py-2 rounded-xl gap-0 mb-6">

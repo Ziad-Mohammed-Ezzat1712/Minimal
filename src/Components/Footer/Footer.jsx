@@ -27,8 +27,15 @@ export default function Footer() {
             <Link to={''} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#E76840]">FAQ</Link>
             <Link to={''} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#E76840]">Returns & Exchanges</Link>
             <Link to={''} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#E76840]">Shipping Info</Link>
-            <Link to={''} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#E76840]">Contact Us</Link>
-          </div>
+           <a
+  href="https://wa.me/201555066188"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#E76840]"
+>
+  Contact Us
+</a>
+</div>
           {/* Info */}
               <div className="flex flex-col items-start">
             <h3 className="font-semibold text-[30px] mb-4">Follow US</h3>
