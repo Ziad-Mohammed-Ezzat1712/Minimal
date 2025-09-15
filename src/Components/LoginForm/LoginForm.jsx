@@ -110,7 +110,7 @@ export default function LoginForm({ onClose, onSwitchMode }) {
         {/* Submit Button */}
         <button
           type="submit"
-          className="font-semibold text-white bg-[#9BC2AF] hover:bg-[#E76840] text-[20px] px-52 focus:ring-4 focus:outline-none focus:ring-emerald-300 rounded-lg w-full sm:w-auto py-2.5 mt-6 text-center"
+          className="font-semibold text-white bg-[#9BC2AF] hover:bg-[#E76840] text-[20px] xl:px-52 focus:ring-4 focus:outline-none focus:ring-emerald-300 rounded-lg w-full sm:w-auto py-2.5 mt-6 text-center"
           disabled={isLoading}
         >
           {isLoading ? <i className="fas fa-spinner fa-spin"></i> : 'Login'}

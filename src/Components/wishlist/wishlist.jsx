@@ -55,7 +55,7 @@ export default function Wishlist() {
       )}
 
       {!Loading && wishListData?.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 px-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 px-4 mb-20">
           {wishListData.map((product) => (
             <div
               key={product.id}
@@ -66,11 +66,14 @@ export default function Wishlist() {
                 alt={product.title}
                 className="w-full h-64 object-contain rounded mb-4"
               />
-              <h3 className="text-[24px] font-semibold mb-1">{product.title}</h3>
-              <h4 className="text-[#9BC2AF] mb-2 text-[18px]">
+             <h3 className="text-[24px] text-left font-semibold mb-1">
+  {product.title.split(" ").slice(0, 2).join(" ")}
+</h3>
+
+              <h4 className="text-[#9BC2AF] text-left mb-2 text-[18px]">
                 {product.category.name}
               </h4>
-              <p className="text-[#E76840] font-medium text-[20px] mb-2">
+              <p className="text-[#E76840] text-left font-medium text-[20px] mb-2">
                 {product.price} EGP
               </p>
 
@@ -144,7 +147,7 @@ export default function Wishlist() {
         </div>
       )}
 
-      <div className="flex justify-between">
+      <div className="flex justify-between ">
         <h1 className="pl-8 text-left text-[40px] font-bold text-[#606160]">
           Related Products
         </h1>
@@ -154,7 +157,7 @@ export default function Wishlist() {
           </button>
         </Link>
       </div>
-      <ReacentProduct limit={6} />
+      <ReacentProduct limit={8} />
     </>
   );
 }

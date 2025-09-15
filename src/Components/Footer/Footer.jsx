@@ -7,8 +7,8 @@ export default function Footer() {
  return (
     <>
       {/* Main Footer */}
-      <footer className="bg-[#9BC2AF] text-black px-6 md:px-12 py-12">
-        <div className="max-w-screen-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      <footer className="bg-[#9BC2AF]  text-black px-6 md:px-12 py-12">
+        <div className="max-w-screen-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Logo */}
           <div className="flex flex-col gap-4 items-start">
             <img src={logo} alt="Logo" className="h-40 w-60 object-contain drop-shadow-lg   " />
@@ -39,10 +39,10 @@ export default function Footer() {
           {/* Info */}
               <div className="flex flex-col items-start">
             <h3 className="font-semibold text-[30px] mb-4">Follow US</h3>
-            <Link to={'https://www.instagram.com/minimal_kids_wear/#'} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#E76840]"><i className='fab fa-instagram '></i> Instagram</Link>
-            <Link to={'https://www.facebook.com/profile.php?id=61577103311162'} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#E76840]"><i className='fab fa-facebook-f'></i> Facebook</Link>
-            <Link to={'https://www.instagram.com/minimal_kids_wear/#'} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#E76840]"><i className='fab fa-twitter'></i> Twitter</Link>
-            <Link to={'https://www.tiktok.com/@minimal_kiddy_wear'} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#E76840]"><i className='fab fa-tiktok'></i> Tiktok</Link>
+            <Link  target="_blank" to={'https://www.instagram.com/minimal_kids_wear/#'} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#E76840]"><i className='fab fa-instagram '></i> Instagram</Link>
+            <Link target="_blank" to={'https://www.facebook.com/profile.php?id=61577103311162'} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#E76840]"><i className='fab fa-facebook-f'></i> Facebook</Link>
+            <Link target="_blank" to={'https://www.instagram.com/minimal_kids_wear/#'} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#E76840]"><i className='fab fa-twitter'></i> Twitter</Link>
+            <Link target="_blank" to={'https://www.tiktok.com/@minimal_kiddy_wear'} className="mb-2 cursor-pointer font-medium text-[#606160] text-[25px] hover:text-[#E76840]"><i className='fab fa-tiktok'></i> Tiktok</Link>
    
           </div>
 
@@ -60,7 +60,7 @@ export default function Footer() {
 
       {/* Copyright Bottom Bar */}
       <div className=" bg-[#9BC2AF] p-6 text-black text-center md:text-left">
-        <div className="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-start gap-4">
+        <div className="max-w-screen-6xl mx-auto flex flex-col md:flex-row justify-between items-start gap-4">
           <h1 className="text-[25px] text-left ">Copyright © 2025 Traffic-Digital.com</h1>
         </div>
       </div>

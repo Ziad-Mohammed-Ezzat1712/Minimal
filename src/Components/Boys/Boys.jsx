@@ -102,7 +102,7 @@ export default function Boys() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="container mx-auto px-4 py-6 ">
       <h1 className="text-3xl text-left font-bold mb-6 text-[#606160]">
         {isArabic ? "أزياء رجالية" : "Men's Fashion"}
       </h1>

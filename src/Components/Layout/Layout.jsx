@@ -9,7 +9,7 @@ export default function Layout() {
     <>
       <Navbar />
       
-      <div className="px-4 sm:px-6 md:px-12 lg:px-20 xl:px-28 py-10 md:py-14 lg:py-16">
+      <div className="px-4 sm:px-6 md:px-12 lg:px-20 xl:px-28 py-10 md:py-14 lg:py-16 overflow-hidden">
         <Outlet />
       </div>
 

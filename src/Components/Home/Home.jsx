@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ReacentProduct from '../ReacentProduct/ReacentProduct';
 import CategoriesSlider from '../CategoriesSlider/CategoriesSlider';
 import MainSlider from '../MainSlider/MainSlider';
@@ -8,21 +8,9 @@ import CategoryProduct from '../CategoryProduct/CategoryProduct';
 import WheelPopup from '../WheelPopup/WheelPopup'; // ✅ استيراد البوب أب
 
 export default function Home() {
-  const [showPopup, setShowPopup] = useState(false);
-
-  useEffect(() => {
-    const hasPlayed = localStorage.getItem('wheelPlayed');
-    if (!hasPlayed) {
-      setTimeout(() => {
-        setShowPopup(true);
-        localStorage.setItem('wheelPlayed', 'true');
-      }, 1000); // تظهر بعد ثانية
-    }
-  }, []);
-
   return (
     <>
-      {showPopup && <WheelPopup onClose={() => setShowPopup(false)} />}
+     <WheelPopup />
 
       <MainSlider />
       <PromoSlider />
